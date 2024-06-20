@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Files to Drive</title>
+	</head>
+	<body>
+		<h1>Subir archivos y enviar en base64</h1>
+		<h2>FILE/S</h2>
+		<form
+			id="uploadForm"
+			onsubmit="enviarData(event)"
+		>
+			<label for="fileInput">Seleccione archivos:</label>
+			<input
+				type="file"
+				id="fileInput"
+				name="files"
+				accept="*/*"
+				multiple
+				required
+			/>
+			<br />
+			<br />
+			<label>
+				<input
+					type="checkbox"
+					id="chbx1"
+				/>
+				Enviar Files en JSON
+			</label>
+			<label>
+				<input
+					type="checkbox"
+					id="chbx2"
+				/>
+				Enviar Files en FormData
+			</label>
+			<br />
+			<br />
+
+			<h2>DATA</h2>
+			<label for="textInput">Ingrese su nombre:</label>
+			<input
+				type="text"
+				id="name"
+				name="name"
+				required
+			/>
+			<label for="textInput">Ingrese su edad:</label>
+			<input
+				type="number"
+				id="age"
+				name="age"
+				required
+			/>
+			<br />
+			<br />
+			<label>
+				<input
+					type="checkbox"
+					id="chbx3"
+				/>
+				Enviar Data en JSON
+			</label>
+			<label>
+				<input
+					type="checkbox"
+					id="chbx4"
+				/>
+				Enviar Data como Query Params
+			</label>
+			<br />
+			<br />
+			<p
+				id="message"
+				style="display: none"
+			>
+				Ojo, si selecciona archivo en FormData y Data en JSON App Script
+				recibira la data como queryParam (No se puede enviar un FormData y un
+				JSON juntos)
+			</p>
+			<button type="submit">Enviar</button>
+		</form>
+		<script
+			type="text/javascript"
+			src="js/sendData.js"
+		></script>
+		<script
+			type="text/javascript"
+			src="js/verifyChbx.js"
+		></script>
+	</body>
+</html>

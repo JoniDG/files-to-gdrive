@@ -1,98 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<title>Files to Drive</title>
-	</head>
-	<body>
-		<h1>Subir archivos y enviar en base64</h1>
-		<h2>FILE/S</h2>
-		<form
-			id="uploadForm"
-			onsubmit="enviarData(event)"
-		>
-			<label for="fileInput">Seleccione archivos:</label>
-			<input
-				type="file"
-				id="fileInput"
-				name="files"
-				accept="*/*"
-				multiple
-				required
-			/>
-			<br />
-			<br />
-			<label>
-				<input
-					type="checkbox"
-					id="chbx1"
-				/>
-				Enviar Files en JSON
-			</label>
-			<label>
-				<input
-					type="checkbox"
-					id="chbx2"
-				/>
-				Enviar Files en FormData
-			</label>
-			<br />
-			<br />
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Files to Drive</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Files to Drive</h1>
+      <p class="subtitulo">
+        Sube archivos a Google Drive y da de alta clientes usando la API de
+        <a
+          href="https://github.com/JoniDG/guide-appscript"
+          target="_blank"
+          rel="noopener"
+          >guide-appscript</a
+        >.
+      </p>
 
-			<h2>DATA</h2>
-			<label for="textInput">Ingrese su nombre:</label>
-			<input
-				type="text"
-				id="name"
-				name="name"
-				required
-			/>
-			<label for="textInput">Ingrese su edad:</label>
-			<input
-				type="number"
-				id="age"
-				name="age"
-				required
-			/>
-			<br />
-			<br />
-			<label>
-				<input
-					type="checkbox"
-					id="chbx3"
-				/>
-				Enviar Data en JSON
-			</label>
-			<label>
-				<input
-					type="checkbox"
-					id="chbx4"
-				/>
-				Enviar Data como Query Params
-			</label>
-			<br />
-			<br />
-			<p
-				id="message"
-				style="display: none"
-			>
-				Ojo, si selecciona archivo en FormData y Data en JSON App Script
-				recibira la data como queryParam (No se puede enviar un FormData y un
-				JSON juntos)
-			</p>
-			<button type="submit">Enviar</button>
-		</form>
-		<script
-			type="text/javascript"
-			src="js/sendData.js"
-		></script>
-		<script
-			type="text/javascript"
-			src="js/verifyChbx.js"
-		></script>
-	</body>
+      <div id="avisoConfig" class="aviso" role="status"></div>
+
+      <section class="tarjeta">
+        <h2>Token de la API</h2>
+        <div class="campo">
+          <label for="token">API_TOKEN</label>
+          <input
+            type="password"
+            id="token"
+            autocomplete="off"
+            placeholder="Pegá el token de la API"
+          />
+          <div class="ayuda">
+            Está en el editor de Apps Script de la guía: Configuración del
+            proyecto &gt; Propiedades del script &gt; API_TOKEN.
+          </div>
+        </div>
+        <label class="casilla">
+          <input type="checkbox" id="recordarToken" />
+          Recordar en este navegador
+        </label>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Subir archivos</h2>
+        <div id="avisoArchivos" class="aviso" role="status"></div>
+        <form id="formArchivos" novalidate>
+          <div class="campo">
+            <label for="archivos">Archivos</label>
+            <input type="file" id="archivos" multiple />
+            <div class="ayuda" id="ayudaArchivos"></div>
+          </div>
+          <button type="submit" id="botonSubir" class="primario">Subir</button>
+        </form>
+        <ul id="listaArchivos" class="lista-archivos" aria-live="polite"></ul>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Nuevo cliente</h2>
+        <div id="avisoCliente" class="aviso" role="status"></div>
+        <form id="formCliente" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre y apellido</label>
+            <input type="text" id="nombre" autocomplete="off" />
+          </div>
+          <div class="campo">
+            <label for="email">Email</label>
+            <input type="email" id="email" autocomplete="off" />
+          </div>
+          <div class="campo">
+            <label for="ciudad">Ciudad</label>
+            <select id="ciudad">
+              <option value="">Elegí una ciudad…</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="monto">Monto</label>
+            <input type="number" id="monto" min="0" step="0.01" value="0" />
+          </div>
+          <label class="casilla">
+            <input type="checkbox" id="activo" checked />
+            Cliente activo
+          </label>
+          <button type="submit" id="botonCliente" class="primario">
+            Crear cliente
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/token.js"></script>
+    <script src="js/archivos.js"></script>
+    <script src="js/clientes.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
